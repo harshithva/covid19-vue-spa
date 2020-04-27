@@ -1,15 +1,16 @@
 <template>
-  <div id="app">
-    <Home />
+  <div id="app" class="overflow-hidden">
+    <router-view></router-view>
+    <Tab />
   </div>
 </template>
 
 <script>
-import Home from "./components/Home.vue";
+import Tab from "./components/Tab.vue";
 export default {
   name: "App",
   components: {
-    Home
+    Tab
   }
 };
 </script>
