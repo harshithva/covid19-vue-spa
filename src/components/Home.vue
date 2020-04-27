@@ -1,21 +1,65 @@
 <template>
-  <div>
-    <b-button v-b-toggle.sidebar-1>Toggle Sidebar</b-button>
-    <b-sidebar id="sidebar-1" title="Sidebar" shadow>
-      <div class="px-3 py-2">
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-        </p>
-        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
-      </div>
-    </b-sidebar>
-  </div>
+  <Fragment>
+    <ul class="nav justify-content-between fixed-bottom shadow p-3 bg-white rounded">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">
+          <font-awesome-icon icon="house-user" class="icons" />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <font-awesome-icon icon="chart-area" class="icons" />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <font-awesome-icon icon="address-book" class="icons" />
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <font-awesome-icon icon="info-circle" class="icons" />
+        </a>
+      </li>
+    </ul>
+  </Fragment>
 </template>
 
 <style scoped>
+.nav {
+  padding: 2rem;
+}
+.nav-link {
+  color: #bdc3c7;
+  font-size: 1.5rem;
+}
+
+.nav-link:hover {
+  color: white;
+  transition: ease-in 0.2s;
+}
+
+.nav-item {
+  border-radius: 1.5rem;
+  width: 5rem;
+}
+
+.nav-item:hover {
+  color: white;
+  background-color: #4c79ff;
+  transition: ease-in 0.2s;
+}
 </style>
 
 <script>
-export default {};
+import { Fragment } from "vue-fragment";
+export default {
+  components: {
+    Fragment
+  }
+};
 </script>
+
+// #473f97 purple
+// #ff4c58 red
+// #4c79ff blue
