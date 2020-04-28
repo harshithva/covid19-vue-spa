@@ -68,6 +68,6 @@ export default {
 };
 </script>
 
-// #473f97 purple
+// #3C44C8 purple
 // #ff4c58 red
 // #4c79ff blue
