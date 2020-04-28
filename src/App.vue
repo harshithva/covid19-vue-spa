@@ -1,11 +1,13 @@
 <template>
-  <div id="app">
+  <div id="app" class="overflow-hidden">
     <div id="loading" v-if="loader">
       <div class="spinner d-flex align-items-center justify-content-center h-100">
         <atom-spinner :animation-duration="1000" :size="60" :color="'#ff1d5e'" v-if="loader" />
       </div>
     </div>
-    <router-view></router-view>
+    <transition :name="transitionName" mode="out-in" @beforeLeave="beforeLeave" @enter="enter">
+      <router-view></router-view>
+    </transition>
     <Tab />
   </div>
 </template>
@@ -21,7 +23,9 @@ export default {
   },
   data() {
     return {
-      loader: true
+      loader: true,
+      prevHeight: 0,
+      transitionName: "fade"
     };
   },
   mounted() {
@@ -32,7 +36,37 @@ export default {
       setTimeout(() => {
         this.loader = false;
       }, 700);
+    },
+    beforeLeave(element) {
+      this.prevHeight = getComputedStyle(element).height;
+    },
+    enter(element) {
+      const { height } = getComputedStyle(element);
+
+      element.style.height = this.prevHeight;
+
+      setTimeout(() => {
+        element.style.height = height;
+      });
+    },
+    afterEnter(element) {
+      element.style.height = "auto";
     }
+  },
+  created() {
+    this.$router.beforeEach((to, from, next) => {
+      let transitionName = to.meta.transitionName || from.meta.transitionName;
+
+      if (transitionName === "slide") {
+        const toDepth = to.path.split("/").length;
+        const fromDepth = from.path.split("/").length;
+        transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+      }
+
+      this.transitionName = transitionName || "fade";
+
+      next();
+    });
   }
 };
 </script>
@@ -51,7 +85,27 @@ export default {
   height: 100vh;
   background: #fff;
   z-index: 99999;
+  transition: all 0.2s ease-in-out;
 }
-.spinner {
+.slide-left-enter-active,
+.slide-left-leave-active,
+.slide-right-enter-active,
+.slide-right-leave-active {
+  transition-duration: 0.2s;
+  transition-property: height, opacity, transform;
+  transition-timing-function: cubic-bezier(0.55, 0, 0.1, 1);
+  overflow: hidden;
+}
+
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(2em, 0);
+}
+
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(-2em, 0);
 }
 </style>

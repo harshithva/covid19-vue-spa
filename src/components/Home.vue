@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        <div class="row mt-2">
+        <div class="row">
           <div class="col-8 text-left">
             <h5 class="text-white">Are you feeling sick ?</h5>
           </div>
@@ -64,7 +64,11 @@
       </div>
     </div>
     <div class="container">
-      <img src="../assets/test.svg" alt="wash hands" />
+      <div class="row">
+        <div class="col">
+          <img src="../assets/test.svg" alt="wash hands" class="img-fluid" />
+        </div>
+      </div>
     </div>
   </fragment>
 </template>
@@ -72,7 +76,7 @@
 <style scoped>
 .hero {
   background-color: #3c44c8;
-  height: 21rem;
+  height: 20rem;
   border-radius: 0 0 2rem 2rem;
 }
 

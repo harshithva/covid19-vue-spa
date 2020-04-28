@@ -21,8 +21,11 @@ library.add(faUserSecret, faHouseUser, faChartArea, faAddressBook, faInfoCircle,
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/stats', component: Statistics },
+  { path: '/', component: Home, meta: { transitionName: 'slide' } },
+  {
+    path: '/stats', component: Statistics,
+    meta: { transitionName: 'slide' },
+  },
 ]
 
 const router = new VueRouter({
