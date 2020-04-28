@@ -63,6 +63,9 @@
         </div>
       </div>
     </div>
+    <div class="container">
+      <img src="../assets/test.svg" alt="wash hands" />
+    </div>
   </fragment>
 </template>
 
